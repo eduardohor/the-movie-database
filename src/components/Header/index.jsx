@@ -1,13 +1,8 @@
-import { Logo, Head } from "./styles";
-import imgLogo from "../assets/img/logo.svg";
+import { Head } from "./styles";
 
 export function Header() {
   return (
     <>
-      <Logo>
-        <img src={imgLogo} alt="Logo TMDB" />
-      </Logo>
-
       <Head>
         <h1>Milhões de filmes, séries e pessoas para descobrir. Explore já.</h1>
         <p>FILTRE POR:</p>
