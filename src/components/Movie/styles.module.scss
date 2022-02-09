@@ -1,11 +1,10 @@
-import styled from 'styled-components'
-
-export const Poster = styled.article`
+.movies{
   width: 176px;
   height: 380px;
   margin-right: 32px;
   margin-bottom: 10px;
   font-size: 16px;
+  cursor: pointer;
 
   img{
     max-width: 100%;
@@ -20,4 +19,4 @@ export const Poster = styled.article`
     color: #646464;
 
   }
-`
+}

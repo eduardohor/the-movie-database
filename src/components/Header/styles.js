@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-export const Head = styled.div`
-  background: #2D0C5E;
-  height: 449px;
+export const Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,13 +31,14 @@ export const Head = styled.div`
       list-style: none;
       margin: 24px 5px 0 5px;
     
-      a{
-        text-decoration: none;
+      button{
+        border: none;
         color: #000;
         background: #fff;
         font-size:16px;
         padding: 8px 16px;
         border-radius: 4px;
+        cursor: pointer;
       }
     }
   }

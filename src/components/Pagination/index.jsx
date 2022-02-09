@@ -4,7 +4,6 @@ import { NumberPage } from "./styles";
 
 export function Pagination(props) {
   const [pageNumberLimit, setPageNumberLimit] = useState(5);
-  const [totalPages, setTotalPages] = useState(500);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
   const [btnPrev, setBtnPrev] = useState(false);
@@ -39,7 +38,7 @@ export function Pagination(props) {
   }
 
   const pages = [];
-  for (let i = 1; i <= totalPages; i++) {
+  for (let i = 1; i <= props.totalPages && i <= 500; i++) {
     pages.push(i);
   }
 

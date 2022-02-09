@@ -1,47 +1,21 @@
-import { Logo, Main } from "./styles/styles";
+import { Details } from "./pages/Details";
+import { Home } from "./pages/Home";
 
-import imgLogo from "./assets/img/logo.svg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { Header } from "./components/Header/index";
-import { Movie } from "./components/Movie/index";
-
-import { api } from "./services/api";
-import { useEffect, useState } from "react";
-import { Pagination } from "./components/Pagination/index";
+import { MovieIdProvider } from "./components/Context/MovieIdProvider";
 
 function App() {
-  const [movies, setMovies] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    api
-      .get(
-        `popular?api_key=3258f70f095dee3eb5d2d1720042adc3&language=pt-br&page=${currentPage}`
-      )
-      .then(({ data }) => {
-        setMovies(data.results);
-        console.log(data);
-      });
-  }, [currentPage]);
-
   return (
-    <div>
-      <Logo>
-        <img src={imgLogo} alt="Logo TMDB" />
-      </Logo>
-      <Header />
-
-      <Main>
-        {movies.length > 0 &&
-          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
-      </Main>
-
-      <Pagination
-        movies={movies}
-        setCurrentPage={setCurrentPage}
-        currentPage={currentPage}
-      ></Pagination>
-    </div>
+    <Router>
+      <MovieIdProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="*" element={<h1>Essa rota não existe</h1>} />
+        </Routes>
+      </MovieIdProvider>
+    </Router>
   );
 }
 

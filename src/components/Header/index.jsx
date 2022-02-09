@@ -1,70 +1,48 @@
-import { Head } from "./styles";
+import { useEffect, useState } from "react";
+import { api } from "../../services/api";
+import { Head } from "../Head/styles";
+import { Title } from "./styles";
 
-export function Header() {
+export function Header(props) {
+  const [genres, setGenres] = useState([]);
+  const [genreId, setGenreId] = useState([]);
+
+  function handleFilter(genre) {
+    console.log(props.moviesId.filter((id) => id.genre_ids.fo));
+  }
+
+  useEffect(() => {
+    api
+      .get(
+        `genre/movie/list?api_key=${process.env.REACT_APP_API_KEY}&language=pt-br`
+      )
+      .then(({ data }) => {
+        setGenres(data.genres);
+        console.log(data);
+      });
+  }, []);
+
   return (
     <>
-      <Head>
-        <h1>Milhões de filmes, séries e pessoas para descobrir. Explore já.</h1>
-        <p>FILTRE POR:</p>
-        <ul>
-          <li>
-            <a href="">Ação</a>
-          </li>
-          <li>
-            <a href="">Aventura</a>
-          </li>
-          <li>
-            <a href="">Animação</a>
-          </li>
-          <li>
-            <a href="">Comédia</a>
-          </li>
-          <li>
-            <a href="">Crime</a>
-          </li>
-          <li>
-            <a href="">Documentário</a>
-          </li>
-          <li>
-            <a href="">Drama</a>
-          </li>
-          <li>
-            <a href="">Família</a>
-          </li>
-          <li>
-            <a href="">Fantasia</a>
-          </li>
-          <li>
-            <a href="">História</a>
-          </li>
-          <li>
-            <a href="">Terror</a>
-          </li>
-          <li>
-            <a href="">Música</a>
-          </li>
-          <li>
-            <a href="">Mistério</a>
-          </li>
-          <li>
-            <a href="">Romance</a>
-          </li>
-          <li>
-            <a href="">Ficcção científica</a>
-          </li>
-          <li>
-            <a href="">Cinema TV</a>
-          </li>
-          <li>
-            <a href="">Thriller</a>
-          </li>
-          <li>
-            <a href="">Guerra</a>
-          </li>
-          <li>
-            <a href="">Faroeste</a>
-          </li>
-        </ul>
+      <Head align_items={"center"} justify_content={"center"}>
+        <Title>
+          <h1>
+            Milhões de filmes, séries e pessoas para descobrir. Explore já.
+          </h1>
+          <p>FILTRE POR:</p>
+          <ul>
+            {genres.length > 0 &&
+              genres.map((genre) => {
+                return (
+                  <li key={genre.id}>
+                    <button onClick={() => handleFilter(genre)}>
+                      {genre.name}
+                    </button>{" "}
+                  </li>
+                );
+              })}
+          </ul>
+        </Title>
       </Head>
     </>
   );
