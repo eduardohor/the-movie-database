@@ -1,0 +1,25 @@
+
+.mainHome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px ;
+
+    @media screen and (max-width:580px){
+      padding: 30px 0 ;
+    }
+    
+    ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } 
+    li{
+      list-style: none;
+      color: #5C16C5;
+      margin-right: 40px;
+      cursor: pointer;
+    }
+}

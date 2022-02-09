@@ -1,10 +1,15 @@
+.link{
+  text-decoration: none;
+  
 .movies{
   width: 176px;
   height: 380px;
-  margin-right: 32px;
   margin-bottom: 10px;
   font-size: 16px;
   cursor: pointer;
+  color: #000;
+  padding: 15px;
+  
 
   img{
     max-width: 100%;
@@ -19,4 +24,5 @@
     color: #646464;
 
   }
+}
 }

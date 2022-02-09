@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-import { Head } from "../Head/styles";
-import { Title } from "./styles";
 
-export function Header(props) {
+import styles from "./styles.module.scss";
+
+export function Header() {
   const [genres, setGenres] = useState([]);
-  const [genreId, setGenreId] = useState([]);
-
-  function handleFilter(genre) {
-    console.log(props.moviesId.filter((id) => id.genre_ids.fo));
-  }
 
   useEffect(() => {
     api
@@ -24,26 +19,22 @@ export function Header(props) {
 
   return (
     <>
-      <Head align_items={"center"} justify_content={"center"}>
-        <Title>
-          <h1>
-            Milhões de filmes, séries e pessoas para descobrir. Explore já.
-          </h1>
+      <header className={styles.headerHome}>
+        <h1>Milhões de filmes, séries e pessoas para descobrir. Explore já.</h1>
+        <div>
           <p>FILTRE POR:</p>
-          <ul>
-            {genres.length > 0 &&
-              genres.map((genre) => {
-                return (
-                  <li key={genre.id}>
-                    <button onClick={() => handleFilter(genre)}>
-                      {genre.name}
-                    </button>{" "}
-                  </li>
-                );
-              })}
-          </ul>
-        </Title>
-      </Head>
+        </div>
+        <ul>
+          {genres.length > 0 &&
+            genres.map((genre) => {
+              return (
+                <li className={styles.listMovie} key={genre.id}>
+                  <button>{genre.name}</button>{" "}
+                </li>
+              );
+            })}
+        </ul>
+      </header>
     </>
   );
 }

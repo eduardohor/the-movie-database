@@ -5,6 +5,7 @@ import { LogoType } from "../../components/LogoType";
 
 import { api } from "../../services/api";
 import { MovieIdContext } from "../../components/Context/MovieIdProvider";
+import { Link } from "react-router-dom";
 
 const IMG_API = "https://image.tmdb.org/t/p/w500";
 
@@ -44,17 +45,76 @@ export function Details() {
     })
     .slice(0, 1);
 
+  const idRecomendation = recommendations.map((id) => {
+    return id.id;
+  });
+
   const news = recommendations
     .map((movies) => {
+      let meses = [
+        "JAN",
+        "FEV",
+        "MAR",
+        "ABR",
+        "MAI",
+        "JUN",
+        "JUL",
+        "AGO",
+        "SET",
+        "OUT",
+        "NOV",
+        "DEZ",
+      ];
+
+      const data = new Date(movies.release_date);
+
+      let day = String(data.getDate()).padStart(2, "0");
+      let month = meses[data.getMonth()];
+      let year = data.getFullYear();
       return (
-        <div className={styles.movieRecommendations}>
-          <img src={IMG_API + movies.poster_path} alt={movies.title} />
-          <h3>{movies.title}</h3>
-          <span>{movies.release_date}</span>
-        </div>
+        <Link to={`/details`} className={styles.linkRecommendations}>
+          <div
+            className={styles.movieRecommendations}
+            onClick={() => {
+              setMoviesId(movies.id);
+            }}
+          >
+            <img src={IMG_API + movies.poster_path} alt={movies.title} />
+            <h3>{movies.title}</h3>
+            <span>{day + " " + month + " " + year}</span>
+          </div>
+        </Link>
       );
     })
     .slice(0, 6);
+
+  const director = crew
+    .filter((j) => {
+      return j.job === "Director";
+    })
+    .map((n) => {
+      return n.name;
+    })
+    .slice(0, 1);
+
+  const screenPlay = crew.filter((j) => {
+    return j.job === "Writer";
+  });
+
+  const data = new Date(movieDetails.release_date);
+
+  let day = String(data.getDate()).padStart(2, "0");
+  let month = String(data.getMonth() + 1).padStart(2, "0");
+  let year = data.getFullYear();
+
+  const hours = Math.floor(movieDetails.runtime / 60);
+  const minutes = movieDetails.runtime % 60;
+
+  const percentage = (number) => {
+    let avaliateMax = 10;
+    let percent = avaliateMax * number;
+    return avaliateMax;
+  };
 
   useEffect(() => {
     api
@@ -100,16 +160,20 @@ export function Details() {
         <header className={styles.header}>
           <img src={IMG_API + filePath} alt="Logo" />
           <section className={styles.text}>
-            <h1>{movieDetails.title + `(${movieDetails.release_date})`}</h1>
+            <h1>{movieDetails.title + `(${year})`}</h1>
             <div className={styles.classification}>
               <ul>
-                <li key={movieDetails.id}>{movieDetails.release_date}(BR) </li>
+                <li key={movieDetails.id}>
+                  {day + "/" + month + "/" + year}(BR){" "}
+                </li>
 
                 {genres.map((genre, indice) => {
                   return <li key={indice}>{genre.name}</li>;
                 })}
 
-                <li key={movieDetails.imdb_id}>{movieDetails.runtime}</li>
+                <li key={movieDetails.imdb_id}>
+                  {hours + "h " + minutes + "m"}
+                </li>
               </ul>
             </div>
             <div className={styles.assessment}>
@@ -131,21 +195,21 @@ export function Details() {
                   );
                 })
                 .slice(0, 2)}
-
               <div>
-                <h3>Tim Miller</h3>
+                <h3>{director}</h3>
                 <span>Director</span>
               </div>
-            </div>
-            <div className={styles.screenplay}>
-              <div>
-                <h3>Rhett Reese</h3>
-                <span>Screenplay</span>
-              </div>
-              <div>
-                <h3>Paul Wernick</h3>
-                <span>Screenplay</span>
-              </div>
+
+              {screenPlay
+                .map((writer) => {
+                  return (
+                    <div>
+                      <h3>{writer.name}</h3>
+                      <span>Screenplay</span>
+                    </div>
+                  );
+                })
+                .slice(0, 2)}
             </div>
           </section>
         </header>
@@ -159,15 +223,17 @@ export function Details() {
         <section className={styles.trailer}>
           <h2>Trailer</h2>
           <iframe
-            width="900"
+            width="100%"
             height="500"
             src={`https://www.youtube.com/embed/${keyTrailer}`}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
         </section>
+
         <section className={styles.recommendations}>
           <h2>Recomendações</h2>
+
           <div>{news}</div>
         </section>
       </main>

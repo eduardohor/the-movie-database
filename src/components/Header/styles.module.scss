@@ -1,10 +1,15 @@
-import styled from 'styled-components'
-
-export const Title = styled.div`
+.headerHome{
+  background: #2D0C5E;
+  display: flex;
+  flex-direction: column;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width:584px){
+    align-items: flex-start;
+  }
   
 
   h1{
@@ -12,13 +17,32 @@ export const Title = styled.div`
     color: #fff;
     max-width: 781px;
     text-align: center;
-    margin-bottom: 40px;
+    margin: 80px 16px 40px;
 
+    @media screen {
+      
+      @media (max-width:800px){
+      font-size:38px;
+      }   
+
+      @media (max-width:584px){
+        font-size:30px;
+        text-align: left;
+      }
+      @media (max-width:360px){
+        font-size:24px;
+      }
+   }
   }
 
   p{
     font-size: 14px;
     color: #fff;
+
+    @media screen and(max-width:584px){
+
+    margin-left: 16px;
+    }
   }
 
   ul{
@@ -26,6 +50,7 @@ export const Title = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     max-width: 1033px;
+    margin: 0 16px 90px 13px;
     
     li{
       list-style: none;
@@ -42,6 +67,5 @@ export const Title = styled.div`
       }
     }
   }
+}
 
-
-`

@@ -1,10 +1,13 @@
-import { Logo } from "./styles";
+import styles from "./styles.module.scss";
 import imgLogo from "../../assets/img/logo.svg";
+import { Link } from "react-router-dom";
 
 export function LogoType() {
   return (
-    <Logo>
-      <img src={imgLogo} alt="Logo TMDB" />
-    </Logo>
+    <div className={styles.logo}>
+      <Link to={"/"}>
+        <img src={imgLogo} alt="Logo TMDB" />
+      </Link>
+    </div>
   );
 }

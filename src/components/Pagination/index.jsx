@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NumberPage } from "./styles";
+import styles from "./styles.module.scss";
 
 export function Pagination(props) {
   const [pageNumberLimit, setPageNumberLimit] = useState(5);
@@ -55,8 +55,8 @@ export function Pagination(props) {
   });
 
   return (
-    <>
-      <NumberPage>
+    <footer className={styles.numberPage}>
+      <ul>
         {btnPrev ? (
           <li>
             <button
@@ -75,7 +75,7 @@ export function Pagination(props) {
         <li>
           <button onClick={handleLastPage}>Última</button>
         </li>
-      </NumberPage>
-    </>
+      </ul>
+    </footer>
   );
 }

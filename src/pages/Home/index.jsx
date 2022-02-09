@@ -4,7 +4,7 @@ import { LogoType } from "../../components/LogoType";
 import { Movie } from "../../components/Movie";
 import { Pagination } from "../../components/Pagination";
 import { api } from "../../services/api";
-import { Main } from "./styles";
+import styles from "./styles.module.scss";
 
 export function Home() {
   const [movies, setMovies] = useState([]);
@@ -35,10 +35,9 @@ export function Home() {
 
       <Header setMoviesId={setMoviesId} moviesId={moviesId} />
 
-      <Main>
-        {movies.length > 0 &&
-          movies.map((movie) => <Movie key={movie.id} {...movie} />)}
-      </Main>
+      <main className={styles.mainHome}>
+        {movies.length > 0 && movies.map((movie) => <Movie {...movie} />)}
+      </main>
 
       <Pagination
         movies={movies}
