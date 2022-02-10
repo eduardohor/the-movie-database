@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/the-movie-database/static/css/main.890f5c2d.css",
+    "main.js": "/the-movie-database/static/js/main.53e6da05.js",
+    "static/media/logo.svg": "/the-movie-database/static/media/logo.d8eb61179f8e85626ebd317d805c768e.svg",
+    "index.html": "/the-movie-database/index.html",
+    "main.890f5c2d.css.map": "/the-movie-database/static/css/main.890f5c2d.css.map",
+    "main.53e6da05.js.map": "/the-movie-database/static/js/main.53e6da05.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.890f5c2d.css",
+    "static/js/main.53e6da05.js"
+  ]
+}
