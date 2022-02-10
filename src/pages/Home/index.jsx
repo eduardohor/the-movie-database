@@ -10,7 +10,6 @@ export function Home() {
   const [movies, setMovies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState([]);
-  const [moviesId, setMoviesId] = useState([]);
 
   useEffect(() => {
     api
@@ -24,16 +23,11 @@ export function Home() {
       });
   }, [currentPage]);
 
-  useEffect(() => {
-    const idMovie = movies.filter((id) => id.genre_ids);
-    setMoviesId(idMovie);
-  }, [movies]);
-
   return (
     <div>
       <LogoType />
 
-      <Header setMoviesId={setMoviesId} moviesId={moviesId} />
+      <Header movies={movies} moviesId={setMovies} />
 
       <main className={styles.mainHome}>
         {movies.length > 0 && movies.map((movie) => <Movie {...movie} />)}
