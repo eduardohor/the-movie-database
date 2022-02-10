@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
-import { Head } from "../../components/Head/styles";
 import styles from "./styles.module.scss";
 import { LogoType } from "../../components/LogoType";
-
 import { api } from "../../services/api";
 import { MovieIdContext } from "../../components/Context/MovieIdProvider";
 import { Link } from "react-router-dom";
@@ -156,64 +154,64 @@ export function Details() {
   return (
     <>
       <LogoType />
-      <Head>
-        <header className={styles.header}>
-          <img src={IMG_API + filePath} alt="Logo" />
-          <section className={styles.text}>
-            <h1>{movieDetails.title + `(${year})`}</h1>
-            <div className={styles.classification}>
-              <ul>
-                <li key={movieDetails.id}>
-                  {day + "/" + month + "/" + year}(BR){" "}
-                </li>
 
-                {genres.map((genre, indice) => {
-                  return <li key={indice}>{genre.name}</li>;
+      <header className={styles.header}>
+        <img src={IMG_API + filePath} alt="Logo" />
+        <section className={styles.text}>
+          <h1>{movieDetails.title + `(${year})`}</h1>
+          <div className={styles.classification}>
+            <ul>
+              <li key={movieDetails.id}>
+                {day + "/" + month + "/" + year} (BR)
+              </li>
+              <li key={movieDetails.release_date}>
+                {genres.map((genre) => {
+                  return genre.name + ", ";
                 })}
+              </li>
 
-                <li key={movieDetails.imdb_id}>
-                  {hours + "h " + minutes + "m"}
-                </li>
-              </ul>
+              <li key={movieDetails.imdb_id}>{hours + "h " + minutes + "m"}</li>
+            </ul>
+          </div>
+          <div className={styles.assessment}>
+            <div>{movieDetails.vote_average}</div>
+            <span>
+              Avaliação dos <br /> usuários
+            </span>
+          </div>
+          <div className={styles.sinopse}>
+            <h3>Sinopse</h3>
+            <p>{movieDetails.overview}</p>
+          </div>
+          <div className={styles.credits}>
+            {cast
+              .map((cast) => {
+                return (
+                  <div>
+                    <h3>{cast.name}</h3>
+                    <span>Characters</span>
+                  </div>
+                );
+              })
+              .slice(0, 2)}
+            <div>
+              <h3>{director}</h3>
+              <span>Director</span>
             </div>
-            <div className={styles.assessment}>
-              <div>{movieDetails.vote_average}</div>
-              <span>Avaliação dos usuários</span>
-            </div>
-            <div className={styles.sinopse}>
-              <h3>Sinopse</h3>
-              <p>{movieDetails.overview}</p>
-            </div>
-            <div className={styles.credits}>
-              {cast
-                .map((cast) => {
-                  return (
-                    <div>
-                      <h3>{cast.name}</h3>
-                      <span>Characters</span>
-                    </div>
-                  );
-                })
-                .slice(0, 2)}
-              <div>
-                <h3>{director}</h3>
-                <span>Director</span>
-              </div>
 
-              {screenPlay
-                .map((writer) => {
-                  return (
-                    <div>
-                      <h3>{writer.name}</h3>
-                      <span>Screenplay</span>
-                    </div>
-                  );
-                })
-                .slice(0, 2)}
-            </div>
-          </section>
-        </header>
-      </Head>
+            {screenPlay
+              .map((writer) => {
+                return (
+                  <div>
+                    <h3>{writer.name}</h3>
+                    <span>Screenplay</span>
+                  </div>
+                );
+              })
+              .slice(0, 2)}
+          </div>
+        </section>
+      </header>
 
       <main className={styles.main_details}>
         <section>
