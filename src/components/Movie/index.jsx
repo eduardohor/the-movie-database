@@ -31,7 +31,7 @@ export function Movie(props) {
 
   return (
     <>
-      <Link to={`/details`} className={styles.link}>
+      <Link to={`/the-movie-database/details`} className={styles.link}>
         <article
           className={styles.movies}
           onClick={() => setMoviesId(props.id)}

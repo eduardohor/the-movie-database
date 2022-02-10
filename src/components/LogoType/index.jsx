@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export function LogoType() {
   return (
     <div className={styles.logo}>
-      <Link to={"/"}>
+      <Link to={"/the-movie-database"}>
         <img src={imgLogo} alt="Logo TMDB" />
       </Link>
     </div>

@@ -70,7 +70,10 @@ export function Details() {
       let month = meses[data.getMonth()];
       let year = data.getFullYear();
       return (
-        <Link to={`/details`} className={styles.linkRecommendations}>
+        <Link
+          to={`/the-movie-database/details`}
+          className={styles.linkRecommendations}
+        >
           <div
             className={styles.movieRecommendations}
             onClick={() => {

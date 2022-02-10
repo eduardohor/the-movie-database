@@ -10,8 +10,8 @@ function App() {
     <Router>
       <MovieIdProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/details" element={<Details />} />
+          <Route path="/the-movie-database" element={<Home />} />
+          <Route path="/the-movie-database/details" element={<Details />} />
           <Route path="*" element={<h1>Essa rota não existe</h1>} />
         </Routes>
       </MovieIdProvider>
