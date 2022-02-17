@@ -12,7 +12,7 @@
 ### `Instruções para construir o projeto localmente`
 
 + Deverá criar uma conta no site do [TMDB](https://www.themoviedb.org/login). Para obter a API Key disponibilizada ao se cadastrar.
-+ Criar um arquivo .env na raiz do projeto para criar uma variável de ambiente com o seguinte nome: EACT_APP_API_KEY. Para receber o valor da API Key.
++ Criar um arquivo .env na raiz do projeto para criar uma variável de ambiente com o seguinte nome: REACT_APP_API_KEY. Para receber o valor da API Key.
 + E inicar o projeto com yarn start.
 
 
